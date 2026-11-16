@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/token-radar-01/adiprmx/makefun-token-radar-01/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 [![reward](https://make.fun/badge/token-radar-01/adiprmx/makefun-token-radar-01/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 
-A token launch radar for make.fun's token-radar-01 bounty. It reads the sealed DefiLlama snapshot (`/input/snapshot.json`), ranks every pre-token protocol the snapshot can honestly rank by an implied launch value, and hands in a static dashboard a reader can sort, filter and open per protocol.
+A token launch radar for make.fun's token-radar-01 bounty. It takes the sealed DefiLlama snapshot (`/input/snapshot.json`), puts a price on what every pre-token protocol's launch could be worth, and hands in a static dashboard a reader can sort, filter and open protocol by protocol.
 
 ## The model (radar-2)
 
@@ -17,7 +17,7 @@ A token launch radar for make.fun's token-radar-01 bounty. It reads the sealed D
 
 ## The board
 
-198 rows: the 40 watchlist protocols plus 158 other rankable pre-token protocols the snapshot holds, above or below the $50M floor. Wrapped, staked and bridged products of tokens that already trade are set aside (144 of them), as are the 24 live-token protocols, shown with their market caps instead of a model value. Every row carries an 8-step farm plan with costs and times, derived from the protocol's category, chains, TVL and age.
+198 rows: the 40 watchlist protocols plus 158 other rankable pre-token protocols the snapshot holds, above or below the $50M floor. Wrapped, staked and bridged products of tokens that already trade are set aside (144 of them), as are the 24 live-token protocols, shown with their market caps instead of a model value. Every row carries an 8-step farm plan with costs and times, derived from the protocol's category, chains, TVL and age — never from a hand-written list of names.
 
 ## Run it
 
@@ -25,7 +25,7 @@ A token launch radar for make.fun's token-radar-01 bounty. It reads the sealed D
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
 ```
 
-`main.ts` (Node 22, standard library only) writes `board.json`, `data.js`, `dashboard/`, `screenshots/` and `dossier.json` to the output directory. The dashboard is a static page with no network: open `dashboard/index.html` beside `data.js` in any browser.
+`main.ts` (Node 22, standard library only) writes `board.json`, `data.js`, `dashboard/`, `screenshots/` and `dossier.json` to the output directory. The dashboard is a static page with no network: open `dashboard/index.html` beside `data.js` in any browser. The page recomputes each row's implied value from the snapshot figures and checks it against the number `board.json` carries.
 
 ## Files
 
